@@ -1,10 +1,5 @@
--- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
--- Link to schema: https://app.quickdatabasediagrams.com/#/d/H0ag0V
--- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
-
--- Modify this code to update the DB schema diagram.
--- To reset the sample schema, replace everything with
--- two dots ('..' - without quotes).
+-- Exported from QuickDBD
+-- This is my code to set up all my dataframes within SQL
 
 CREATE TABLE "employees" (
     "emp_no" VARCHAR(10)   NOT NULL,
@@ -59,21 +54,22 @@ CREATE TABLE "salaries" (
      )
 );
 
--- DROP TABLE department, dept_emp, dept_manager, employees, salaries, titles;
 
--- ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_emp_no" FOREIGN KEY("emp_no")
--- REFERENCES "dept_manager" ("emp_no");
 
--- ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_emp_title" FOREIGN KEY("emp_title")
--- REFERENCES "titles" ("title_id");
+ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_emp_no" FOREIGN KEY("emp_no")
+REFERENCES "dept_manager" ("emp_no");
 
--- ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
--- REFERENCES "employees" ("emp_no");
+ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_emp_title" FOREIGN KEY("emp_title")
+REFERENCES "titles" ("title_id");
 
--- ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_no" FOREIGN KEY("dept_no")
--- REFERENCES "department" ("dept_no");
+ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
+REFERENCES "employees" ("emp_no");
 
--- ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
--- REFERENCES "employees" ("emp_no");
+ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_no" FOREIGN KEY("dept_no")
+REFERENCES "department" ("dept_no");
 
+ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
+REFERENCES "employees" ("emp_no");
+
+-- Test my tables out
 SELECT * FROM employees
